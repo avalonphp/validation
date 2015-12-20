@@ -1,0 +1,26 @@
+{
+    "name": "avalon/validation",
+    "description": "Avalon validation component.",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Nirix"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Avalon\\Validation\\": "src/"
+        }
+    },
+    "require": {
+        "respect/validation": "^1.0"
+    },
+    "require-dev": {
+        "filp/whoops": "^1.1"
+    },
+    "extra": {
+        "branch-alias": {
+           "dev-master": "2.0.x-dev"
+        }
+    }
+}
