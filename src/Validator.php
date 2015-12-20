@@ -111,10 +111,10 @@ class Validator
      *
      * @return boolean true if passed otherwise false
      */
-    public function length($field, $value, $options)
+    public function minLength($field, $value, $options)
     {
         if (!v::length($options)->validate($value)) {
-            $this->errors[$field]['length'] = $options;
+            $this->errors[$field]['minLength'] = ['minLength' => $options];
             return false;
         }
 
