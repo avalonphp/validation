@@ -146,7 +146,7 @@ class Validator
     public function noWhitespace($field, $value)
     {
         if (!v::noWhitespace()->validate($value)) {
-            $this->errors[$field][] = 'noWhitespace';
+            $this->errors[$field][] = 'no_whitespace';
             return false;
         }
 
