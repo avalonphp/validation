@@ -168,4 +168,20 @@ class Validator
 
         return true;
     }
+
+    /**
+     * @param string $field
+     * @param mixed  $value
+     *
+     * @return boolean true if passed otherwise false
+     */
+    public function alnum($field, $value)
+    {
+        if (!v::alnum()->validate($value)) {
+            $this->errors[$field][] = 'alnum';
+            return false;
+        }
+
+        return true;
+    }
 }
