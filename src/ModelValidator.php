@@ -57,7 +57,8 @@ class ModelValidator extends Validator
     public function unique($field, $value)
     {
         $model = $this->model;
-        if ($model::find($field, $value)) {
+        $obj = $model::find($field, $value);
+        if ($obj && $obj->id != $this->data->id) {
             $this->errors[$field][] = 'unique';
             return false;
         }
