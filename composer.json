@@ -12,9 +12,6 @@
             "Avalon\\Validation\\": "src/"
         }
     },
-    "require": {
-        "respect/validation": "^1.0"
-    },
     "require-dev": {
         "filp/whoops": "^1.1"
     },

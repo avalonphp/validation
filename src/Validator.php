@@ -1,7 +1,7 @@
 <?php
 /*!
  * Avalon
- * Copyright 2011-2015 Jack P.
+ * Copyright 2011-2016 Jack P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@
  */
 
 namespace Avalon\Validation;
-
-use Respect\Validation\Validator as v;
 
 /**
  * Validation class.
@@ -97,7 +95,7 @@ class Validator
      */
     public function required($field, $value)
     {
-        if (!v::notEmpty()->validate($value)) {
+        if (empty($value) || $value == null) {
             $this->errors[$field][] = 'required';
             return false;
         }
@@ -113,7 +111,7 @@ class Validator
      */
     public function minLength($field, $value, $options)
     {
-        if (!v::length($options)->validate($value)) {
+        if (strlen($value) < $options) {
             $this->errors[$field]['minLength'] = ['minLength' => $options];
             return false;
         }
@@ -129,7 +127,7 @@ class Validator
      */
     public function email($field, $value)
     {
-        if (!v::email()->validate($value)) {
+        if (filter_var($value, \FILTER_VALIDATE_EMAIL) === false) {
             $this->errors[$field][] = 'email';
             return false;
         }
@@ -145,7 +143,7 @@ class Validator
      */
     public function noWhitespace($field, $value)
     {
-        if (!v::noWhitespace()->validate($value)) {
+        if (preg_match('/\s/', $value)) {
             $this->errors[$field][] = 'no_whitespace';
             return false;
         }
@@ -161,7 +159,7 @@ class Validator
      */
     public function integer($field, $value)
     {
-        if (!v::intVal()->validate($value)) {
+        if (filter_var($value, \FILTER_VALIDATE_INT) === false) {
             $this->errors[$field][] = 'integer';
             return false;
         }
@@ -177,7 +175,7 @@ class Validator
      */
     public function alnum($field, $value)
     {
-        if (!v::alnum()->validate($value)) {
+        if (!ctype_alnum($value)) {
             $this->errors[$field][] = 'alnum';
             return false;
         }
