@@ -95,7 +95,7 @@ class Validator
      */
     public function required($field, $value)
     {
-        if (empty($value) || $value == null) {
+        if (empty(trim($value)) || $value == null) {
             $this->errors[$field][] = 'required';
             return false;
         }
