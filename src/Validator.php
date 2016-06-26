@@ -81,7 +81,6 @@ class Validator
                     $this->{$validation}($field, $this->data->{$field}, $options);
                 }
             }
-
         }
 
         return !count($this->errors);
@@ -95,7 +94,11 @@ class Validator
      */
     public function required($field, $value)
     {
-        if (empty(trim($value)) || $value == null) {
+        if (is_string($value)) {
+            $value = trim($value);
+        }
+
+        if ($value == null || empty($value)) {
             $this->errors[$field][] = 'required';
             return false;
         }
